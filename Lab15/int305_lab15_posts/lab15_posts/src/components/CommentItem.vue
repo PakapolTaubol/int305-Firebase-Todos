@@ -5,8 +5,6 @@ const props = defineProps({
     required: true,
   },
 });
-
-// console.log(props.comment);
 </script>
 
 <template>

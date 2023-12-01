@@ -32,19 +32,17 @@ async function getPosts() {
   onSnapshot(
     qry,
     async (snapshot) => {
-      //docChanges => catch only doc that change
       posts.value = [];
       for (const change of snapshot.docChanges()) {
         switch (change.type) {
           case "added":
-            data = change.doc.data(); // add all data to ref
+            data = change.doc.data();
             data.id = change.doc.id;
             data.user = user.value;
             data.comments = [];
             posts.value.push(data);
             break;
           case "modified":
-            // Handle modified document
             break;
           case "removed":
             let delPostIndex = posts.value.findIndex(
@@ -56,17 +54,16 @@ async function getPosts() {
       }
     },
     (err) => {
-      console.log(`Encountered error: ${err}`);
+      console.log(`Error: ${err}`);
     }
   );
 
-  //computed pattern
   setInterval(async () => {
     await updateDoc(doc(db, "users", userId), {
       amountpost: posts.value.length,
     });
     getPosts();
-  }, 1000 * 60); // computed every 1 min
+  }, 1000 * 60);
 }
 
 watch(() => route.params.user, getPosts);

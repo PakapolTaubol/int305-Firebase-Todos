@@ -34,7 +34,7 @@ async function getUsers() {
       });
     },
     (err) => {
-      console.log(`Encountered error: ${err}`);
+      console.log(`Error: ${err}`);
     }
   );
 }

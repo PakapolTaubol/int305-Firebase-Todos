@@ -19,26 +19,16 @@ const commentDetail = reactive({
   cmtdate: serverTimestamp(),
 });
 
-const clearData = () => {
+const cleanInput = () => {
   commentDetail.comment = "";
   commentDetail.email = "";
   commentDetail.name = "";
   commentDetail.stars = 0;
 };
 
-const addNewCommentHandler = () => {
-  // if (
-  //   commentDetail.user !== "" &&
-  //   commentDetail.email !== "" &&
-  //   commentDetail.comment !== "" &&
-  //   commentDetail.stars !== null
-  // ) {
-  //   const commentRef = collection(db, "posts", props.postId, "comments");
-  //   await addDoc(commentRef, commentDetail);
-  //   clearData();
-  // } else console.error("Cannot add doc");
+const addCommentHandler = () => {
   emits("addComment", commentDetail);
-  clearData();
+  cleanInput();
 };
 </script>
 
@@ -65,7 +55,7 @@ const addNewCommentHandler = () => {
     </div>
 
     <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 w-full rounded-lg uppercase text-lg"
-      @click="addNewCommentHandler">
+      @click="addCommentHandler">
       Submit
     </button>
   </div>
