@@ -1,35 +1,48 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, getDocs, query, where } from 'firebase/firestore';
 import db from '../firebase/init.js';
 import Table from '../components/Table.vue';
 
-const empCol = ref(null)
-const data = ref([])
-const employee = ref([])
+const empCol = ref(null);
+const data = ref([]);
+const employees = ref([]);
 
 onMounted(async () => {
-    data.value = await getEmployess(db);
+    data.value = await getEmployeesWithDepartments(db);
     data.value.forEach(emp => {
-        showData(emp.data())
-    })
+        showData(emp);
+    });
 });
 
-const getEmployess = async (db) => {
+const getEmployeesWithDepartments = async (db) => {
     empCol.value = collection(db, 'employees');
     const empSnapshot = await getDocs(empCol.value);
-    return empSnapshot;
-}
+    const employeesWithDepartments = [];
+
+    for (const doc of empSnapshot.docs) {
+        const empData = doc.data();
+        const depColRef = collection(doc.ref, 'department');
+        const depSnapshot = await getDocs(depColRef);
+
+        depSnapshot.forEach(depDoc => {
+            empData.department = depDoc.data();
+        });
+
+        employeesWithDepartments.push(empData);
+    }
+
+    return employeesWithDepartments;
+};
 
 const showData = (emp) => {
-    employee.value.push(emp);
-}
-
+    employees.value.push(emp);
+};
 </script>
  
 <template>
     <div class="header">
-        <Table :data="employee" />
+        <Table :data="employees" />
     </div>
 </template>
  
