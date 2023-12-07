@@ -90,11 +90,12 @@ var employees = [
     }
 ]
 
-employees.forEach(function (obj) {
-    db.collection("employees").add({
+employees.forEach(function (obj, index) {
+    const employee_id = `EM${(index + 1).toString().padStart(2, '0')}`;
+    db.collection("employees").doc(employee_id).set({
         name: obj.name,
         age: obj.age,
         email: obj.email,
         salary: obj.salary
-    }).then(docRef => { console.log("Document written with ID : " + docRef.id) })
+    }).then(docRef => { console.log("Document written with ID : " + employee_id) })
 });

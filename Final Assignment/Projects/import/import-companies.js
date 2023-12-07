@@ -103,14 +103,16 @@ var companies = [
 
 ]
 
-companies.forEach(function (obj) {
+companies.forEach(function (obj, index) {
     // แปลงเป็น Timestamp
     obj.status.createdOn = new Date(obj.status.createdOn);
     obj.status.updatedOn = new Date(obj.status.updatedOn);
     // เพิ่มข้อมูล
-    db.collection("companies").add({
+    const company_id = `CMP${(index + 1).toString().padStart(2, '0')}`; // Generate CMP001 -> CMPXXX
+    db.collection("companies").doc(company_id).set({
         name: obj.name,
         type: obj.type,
         status: obj.status,
-    }).then(docRef => { console.log("Document written with ID : " + docRef.id) })
+    }).then(() => { console.log(`Document written with ID: ${company_id}`) })
+    .catch(error => { console.error("Error adding document: ", error); });
 });
