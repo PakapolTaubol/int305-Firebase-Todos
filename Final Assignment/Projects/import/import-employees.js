@@ -14,79 +14,281 @@ var employees = [
         "name": "ภคพล ทาอุบล",
         "age": 21,
         "email": "pakapol.taub@kmutt.ac.th",
-        "salary": 25000
+        "salary": 25000,
+        "company": "CMP01",
+        "department": "Full-stack"
     },
     {
-        "name": "ณัฐพล ทองดี",
-        "age": 22,
-        "email": "natthapol.thongdee@kmutt.ac.th",
-        "salary": 30000
-    },
-    {
-        "name": "ณัฐธิดา ศรีสังข์",
-        "age": 23,
-        "email": "nathida.srisaeng@kmutt.ac.th",
-        "salary": 35000
-    },
-    {
-        "name": "ภัทรพล แก้วมณี",
-        "age": 24,
-        "email": "pattrapol.kaewmanee@kmutt.ac.th",
-        "salary": 40000
-    },
-    {
-        "name": "สุวัฒน์ ศรีสุวิมล",
+        "name": "สุภาวดี แสนดี",
         "age": 25,
-        "email": "suwat.srisuwimool@kmutt.ac.th",
-        "salary": 45000
+        "email": "supawadee.sande@gmail.com",
+        "salary": 28000,
+        "company": "CMP03",
+        "department": "Frontend"
     },
     {
-        "name": "วรากรณ์ จันทรเสรี",
-        "age": 26,
-        "email": "warakorn.chantraseri@kmutt.ac.th",
-        "salary": 50000
-    },
-    {
-        "name": "ธนัตถ์ ศุภผล",
-        "age": 27,
-        "email": "thanat.supaphon@kmutt.ac.th",
-        "salary": 55000
-    },
-    {
-        "name": "ศุภชัย ทองสุก",
-        "age": 28,
-        "email": "supachai.thongsuk@kmutt.ac.th",
-        "salary": 60000
-    },
-    {
-        "name": "ณัฐพล ประเสริฐ",
-        "age": 29,
-        "email": "natthapol.prasert@kmutt.ac.th",
-        "salary": 65000
-    },
-    {
-        "name": "ณัฐชญา ศรีจันทร์",
+        "name": "วิชญากร ประดิษฐ์",
         "age": 30,
-        "email": "natthacha.srichan@kmutt.ac.th",
-        "salary": 70000
+        "email": "wichayakorn.pra@company.com",
+        "salary": 35000,
+        "company": "CMP06",
+        "department": "Backend"
     },
     {
-        "name": "ภัทรวัฒน์ ศรีพิพัฒน์",
+        "name": "ณัฐกฤต สุขสุข",
+        "age": 28,
+        "email": "nuttakrit.suk@gmail.com",
+        "salary": 30000,
+        "company": "CMP01",
+        "department": "Full-stack"
+    },
+    {
+        "name": "จันทร์ทิพย์ มีดี",
+        "age": 23,
+        "email": "jantip.midi@workplace.net",
+        "salary": 26000,
+        "company": "CMP05",
+        "department": "Data Analyst"
+    },
+    {
+        "name": "ภัทรวรรณ พรหมประสิทธิ์",
+        "age": 27,
+        "email": "patrawan.promp@domain.com",
+        "salary": 32000,
+        "company": "CMP02",
+        "department": "Frontend"
+    },
+    {
+        "name": "สุวัจน์ วรเชษฐ์",
+        "age": 29,
+        "email": "suwat.vor@service.org",
+        "salary": 29000,
+        "company": "CMP07",
+        "department": "QA"
+    },
+    {
+        "name": "วิทยา อุตโม",
+        "age": 26,
+        "email": "witthaya.uto@enterprise.com",
+        "salary": 27000,
+        "company": "CMP10",
+        "department": "DevOps"
+    },
+    {
+        "name": "กาญจนา สุขใจ",
+        "age": 24,
+        "email": "kanjana.sukjai@business.co",
+        "salary": 25500,
+        "company": "CMP04",
+        "department": "HR"
+    },
+    {
+        "name": "ณัฐภัทร จันทร์สว่าง",
         "age": 31,
-        "email": "pattarawatt.sripipat@kmutt.ac.th",
-        "salary": 75000
+        "email": "nattapat.jansawang@company.net",
+        "salary": 36500,
+        "company": "CMP09",
+        "department": "Product Manager"
     },
     {
-        "name": "สุภัทร ศรีสุวรรณ",
-        "age": 32,
-        "email": "suphat.srisuwan@kmutt.ac.th",
-        "salary": 80000
+        "name": "ประวิทย์ แจ่มใส",
+        "age": 22,
+        "email": "prawit.jamsai@startup.io",
+        "salary": 24000,
+        "company": "CMP04",
+        "department": "Data Engineer"
     },
     {
-        "name": "วรายุฑ จันทรเสรี",
+        "name": "ชาญวิทย์ วรรณรอง",
         "age": 33,
-        "email": "warayut.chantraseri@kmutt.ac.th",
-        "salary": 85000
+        "email": "chanwit.wanrong@tech.com",
+        "salary": 38000,
+        "company": "CMP10",
+        "department": "Data Scientist"
+    },
+    {
+        "name": "วิชิต พรหมทอง",
+        "age": 29,
+        "email": "wichit.promthong@corporation.org",
+        "salary": 31000,
+        "company": "CMP07",
+        "department": "BA"
+    },
+    {
+        "name": "กฤษฎา อัครวุฒิ",
+        "age": 27,
+        "email": "krita.akkarawut@business.co",
+        "salary": 32000,
+        "company": "CMP03",
+        "department": "BA"
+    },
+    {
+        "name": "ณภัทร ทองสุข",
+        "age": 26,
+        "email": "naphat.thongsuk@company.net",
+        "salary": 28500,
+        "company": "CMP10",
+        "department": "Full-stack"
+    },
+    {
+        "name": "สมชาย ประดิษฐ์",
+        "age": 28,
+        "email": "somchai.pra@service.org",
+        "salary": 29500,
+        "company": "CMP08",
+        "department": "QA"
+    },
+    {
+        "name": "สิทธิโชค วงศ์วิสิฐ",
+        "age": 25,
+        "email": "sitthichok.wongwisit@enterprise.com",
+        "salary": 27500,
+        "company": "CMP06",
+        "department": "Data Scientist"
+    },
+    {
+        "name": "วรเมธ สุวรรณประสิทธิ์",
+        "age": 30,
+        "email": "woramat.suwannaprasit@business.co",
+        "salary": 33500,
+        "company": "CMP01",
+        "department": "DevOps"
+    },
+    {
+        "name": "ณัฐนนท์ พันธุ์ทอง",
+        "age": 24,
+        "email": "nattanun.panthong@startup.io",
+        "salary": 26500,
+        "company": "CMP02",
+        "department": "Product Manager"
+    },
+    {
+        "name": "ธนวิชญ์ รักษาดี",
+        "age": 29,
+        "email": "thanawit.raksa@tech.com",
+        "salary": 30500,
+        "company": "CMP05",
+        "department": "Frontend"
+    },
+    {
+        "name": "อริสา จันทร์สว่าง",
+        "age": 26,
+        "email": "orisar.jansawang@corporation.org",
+        "salary": 29000,
+        "company": "CMP09",
+        "department": "Marketing Manager"
+    },
+    {
+        "name": "อรวรรณ ศิลปวัฒน์",
+        "age": 23,
+        "email": "orawan.silpawat@company.net",
+        "salary": 25500,
+        "company": "CMP07",
+        "department": "BA"
+    },
+    {
+        "name": "ณฐวุฒิ สุขดี",
+        "age": 27,
+        "email": "nattawut.sukdi@service.org",
+        "salary": 28000,
+        "company": "CMP10",
+        "department": "Data Analyst"
+    },
+    {
+        "name": "พงษ์พัฒน์ วงศ์ชัย",
+        "age": 25,
+        "email": "phongphat.wongchai@enterprise.com",
+        "salary": 27000,
+        "company": "CMP08",
+        "department": "DevOps"
+    },
+    {
+        "name": "ธนกฤต บุญส่ง",
+        "age": 30,
+        "email": "thanakrit.bunsong@business.co",
+        "salary": 32500,
+        "company": "CMP04",
+        "department": "Product Manager"
+    },
+    {
+        "name": "ธนากร สุขสวัสดิ์",
+        "age": 28,
+        "email": "thanakorn.sukswasdi@startup.io",
+        "salary": 29500,
+        "company": "CMP02",
+        "department": "BA"
+    },
+    {
+        "name": "สิรวิชญ์ มีประสิทธิ์",
+        "age": 26,
+        "email": "sirisit.meeprasit@tech.com",
+        "salary": 28500,
+        "company": "CMP05",
+        "department": "Frontend"
+    },
+    {
+        "name": "วิศวกร ศรีสุข",
+        "age": 29,
+        "email": "wisaeng.suks@corporation.org",
+        "salary": 31000,
+        "company": "CMP09",
+        "department": "Marketing Manager"
+    },
+    {
+        "name": "วิศุทธิ์ ศิลปวัฒน์",
+        "age": 27,
+        "email": "wisut.silpawat@company.net",
+        "salary": 29000,
+        "company": "CMP07",
+        "department": "Data Engineer"
+    },
+    {
+        "name": "ศรัณย์ วงศ์ชัย",
+        "age": 25,
+        "email": "saran.wongchai@service.org",
+        "salary": 28000,
+        "company": "CMP10",
+        "department": "Full-stack"
+    },
+    {
+        "name": "วิษณุ บุญส่ง",
+        "age": 30,
+        "email": "visanu.bunsong@business.co",
+        "salary": 33000,
+        "company": "CMP04",
+        "department": "DevOps"
+    },
+    {
+        "name": "วรวุฒิ สุขสวัสดิ์",
+        "age": 28,
+        "email": "woravut.sukswasdi@startup.io",
+        "salary": 30000,
+        "company": "CMP02",
+        "department": "Product Manager"
+    },
+    {
+        "name": "วสุพล ศรีสุข",
+        "age": 26,
+        "email": "vasupol.suks@tech.com",
+        "salary": 29000,
+        "company": "CMP05",
+        "department": "Frontend"
+    },
+    {
+        "name": "วราพร ศิลปวัฒน์",
+        "age": 29,
+        "email": "waraporn.silpawat@corporation.org",
+        "salary": 31500,
+        "company": "CMP09",
+        "department": "Marketing Manager"
+    },
+    {
+        "name": "วุฒิชัย ศิลปวัฒน์",
+        "age": 27,
+        "email": "wutticha.silpawat@company.net",
+        "salary": 29500,
+        "company": "CMP07",
+        "department": "Data Engineer"
     }
 ]
 
@@ -96,6 +298,8 @@ employees.forEach(function (obj, index) {
         name: obj.name,
         age: obj.age,
         email: obj.email,
+        company: obj.company,
+        department: obj.department,
         salary: obj.salary
-    }).then(docRef => { console.log("Document written with ID : " + employee_id) })
+    }).then(() => { console.log("Document written with ID : " + employee_id) })
 });
