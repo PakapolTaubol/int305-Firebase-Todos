@@ -42,7 +42,10 @@ const showData = (emp) => {
  
 <template>
     <div class="header">
-        <Table :data="employees" />
+        <div class="max-w-screen-lg mx-auto space-y-4">
+            <h1 class="text-3xl">Employees List</h1>
+            <Table :data="employees"/>
+        </div>
     </div>
 </template>
  
