@@ -1,50 +1,24 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { collection, getDocs, query, where } from 'firebase/firestore';
-import db from '../firebase/init.js';
-import Table from '../components/Table.vue';
+import List from '../components/List.vue';
+import { getDataByCollectionName } from '../composable/getData';
 
-const empCol = ref(null);
 const data = ref([]);
 const employees = ref([]);
 
 onMounted(async () => {
-    data.value = await getEmployeesWithDepartments(db);
+    data.value = await getDataByCollectionName("employees");
     data.value.forEach(emp => {
-        showData(emp);
+        employees.value.push(emp);
     });
 });
-
-const getEmployeesWithDepartments = async (db) => {
-    empCol.value = collection(db, 'employees');
-    const empSnapshot = await getDocs(empCol.value);
-    const employeesWithDepartments = [];
-
-    for (const doc of empSnapshot.docs) {
-        const empData = doc.data();
-        const depColRef = collection(doc.ref, 'department');
-        const depSnapshot = await getDocs(depColRef);
-
-        depSnapshot.forEach(depDoc => {
-            empData.department = depDoc.data();
-        });
-
-        employeesWithDepartments.push(empData);
-    }
-
-    return employeesWithDepartments;
-};
-
-const showData = (emp) => {
-    employees.value.push(emp);
-};
 </script>
  
 <template>
     <div class="header">
         <div class="max-w-screen-lg mx-auto space-y-4">
-            <h1 class="text-3xl">Employees List</h1>
-            <Table :data="employees"/>
+            <h1 class="text-3xl text-center py-6">Employees List</h1>
+            <List :data="employees" />
         </div>
     </div>
 </template>
