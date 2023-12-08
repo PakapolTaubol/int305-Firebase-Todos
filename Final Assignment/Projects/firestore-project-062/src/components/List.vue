@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import { getDataByCollectionName } from "../composable/getData.js"
+import { getDataByCollectionName, getCompanyNameById } from "../composable/getData.js"
 
 defineProps({
     data: {
@@ -9,28 +9,24 @@ defineProps({
     },
 });
 
-const colCompany = ref([])
-const companies = ref([]);
+const companies = ref([])
+const companyNames = ref({});
+
 onMounted(async () => {
-    colCompany.value = await getDataByCollectionName("companies");
-    colCompany.value.forEach(emp => {
-        companies.value.push(emp);
+    companies.value = await getDataByCollectionName("companies");
+    companies.value.forEach(async (company) => {
+        companyNames.value[company.id] = await getCompanyNameById(company.id);
     });
 });
 
-const getCompanyName = (cmp_id) => {
-    let cmp_name = '';
-    companies.value.forEach(cmp => {
-        if (cmp.id == cmp_id) {
-            cmp_name = cmp.name;
-        }
-    });
-    return cmp_name;
-}
+const getCompanyName = (companyId) => {
+    return companyNames.value[companyId];
+};
+
 </script>
  
 <template>
-    <div>
+    <div v-if="companyNames && data">
         <div v-for="(doc, index) in data" :key="index" class="bg-gray-100 rounded-lg p-4 mb-4">
             <div class="flex items-center justify-between">
                 <h3 class="text-lg font-semibold">{{ index + 1 }}. {{ doc.name }}</h3>
@@ -57,6 +53,10 @@ const getCompanyName = (cmp_id) => {
                 </ul>
             </div>
         </div>
+    </div>
+
+    <div v-else class="flex justify-center items-center">
+        <div class="loading loading-dots loading-lg py-44 bg-purple-700"></div>
     </div>
 </template>
 

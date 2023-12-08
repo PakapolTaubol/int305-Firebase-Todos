@@ -1,4 +1,4 @@
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, documentId, getDocs, query, where } from 'firebase/firestore';
 import db from '../firebase/init.js';
 
 export const getDataByCollectionName = async (col_name) => {
@@ -12,4 +12,19 @@ export const getDataByCollectionName = async (col_name) => {
         data.push(docData);
     }
     return data;
+}
+
+export const getCompanyNameById = async (cmp_id) => {
+    const col = collection(db, "companies");
+    const qry = query(col, where(documentId(), '==', cmp_id));
+    const snapshot = await getDocs(qry);
+    let data = null;
+
+    for (const doc of snapshot.docs) {
+        const docData = doc.data();
+        docData.id = doc.id;
+        data = docData;
+    }
+    
+    return data.name;
 }
