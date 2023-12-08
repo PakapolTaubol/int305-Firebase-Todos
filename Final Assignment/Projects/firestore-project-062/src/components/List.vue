@@ -1,20 +1,22 @@
 <script setup>
-import { ref, onMounted } from 'vue';
-import { getDataByCollectionName, getCompanyNameById } from "../composable/getData.js"
+import { ref, watchEffect } from 'vue';
+import { getCompanyNameById } from "../composable/getData.js"
 
-defineProps({
+const props = defineProps({
     data: {
         type: Array,
         reqired: true,
     },
+    companies: {
+        type: Array,
+        reqired: true,
+    }
 });
 
-const companies = ref([])
 const companyNames = ref({});
 
-onMounted(async () => {
-    companies.value = await getDataByCollectionName("companies");
-    companies.value.forEach(async (company) => {
+watchEffect(async () => {
+    props.companies.forEach(async (company) => {
         companyNames.value[company.id] = await getCompanyNameById(company.id);
     });
 });

@@ -2,15 +2,14 @@
 import { ref, onMounted } from 'vue';
 import List from '../components/List.vue';
 import { getDataByCollectionName } from '../composable/getData';
+import CompanyList from '../components/CompanyList.vue';
 
 const data = ref([]);
-const employees = ref([]);
+const companies = ref([]);
 
 onMounted(async () => {
     data.value = await getDataByCollectionName("employees");
-    data.value.forEach(emp => {
-        employees.value.push(emp);
-    });
+    companies.value = await getDataByCollectionName("companies");
 });
 </script>
  
@@ -18,7 +17,8 @@ onMounted(async () => {
     <div class="header">
         <div class="max-w-screen-lg mx-auto space-y-4">
             <h1 class="text-3xl text-center py-6">Employees List</h1>
-            <List :data="employees" />
+            <CompanyList :companies="companies"/>
+            <List :data="data" :companies="companies" />
         </div>
     </div>
 </template>
