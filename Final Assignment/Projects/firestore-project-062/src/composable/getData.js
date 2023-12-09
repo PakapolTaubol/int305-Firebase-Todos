@@ -1,5 +1,6 @@
-import { and, collection, documentId, getDocs, limit, or, orderBy, query, where } from 'firebase/firestore';
+import { and, getAggregateFromServer, collection, documentId, getDocs, limit, or, sum, orderBy, query, where, count, average } from 'firebase/firestore';
 import db from '../firebase/init.js';
+import Swal from 'sweetalert2';
 
 let isAsc = true;
 let lastIndex = 0;
@@ -8,6 +9,9 @@ export const queryByCondition = async (index, mode) => {
     const colEmployee = collection(db, "employees");
     const colCompany = collection(db, "companies");
     const colDepartment = collection(db, "departments");
+
+    let snapshotText = '';
+    let text = '';
     // ทำให้การกดปุ่มอื่นเริ่มด้วย asc เสมอ
     lastIndex == index ? '' : isAsc = true
     if (mode == 'employees') {
@@ -32,6 +36,44 @@ export const queryByCondition = async (index, mode) => {
                 break;
             case 6:
                 qry = query(colEmployee, where('department', 'in', ['QA', 'BA']));
+                break;
+        }
+    } else if (mode == 'condition') {
+        switch (index) {
+            case 0:
+                qry = query(colEmployee)
+                break;
+            case 1:
+                qry = query(colEmployee, where('company', '==', 'CMP01'));
+                snapshotText = await getAggregateFromServer(qry, { total: count('company') });
+                text = snapshotText.data().total;
+                Swal.fire({
+                    title: 'จำนวนคนที่อยู่บริษัท Arise',
+                    text: `ทั้งหมด ${text} คน`,
+                    showConfirmButton: false
+                })
+                break;
+            case 2:
+                qry = query(colEmployee, where('department', '==', 'DevOps'));
+                snapshotText = await getAggregateFromServer(qry, { total: average('salary') });
+                text = snapshotText.data().total;
+                Swal.fire({
+                    title: 'เงินเดือนเฉลี่ยของ DevOps',
+                    text: `ทั้งหมด ${text} บาท`,
+                    showConfirmButton: false
+                })
+                break;
+            case 3:
+                qry = query(colEmployee, and(where('salary', '>=', 24000), where('salary', '<=', 26000)), orderBy('salary', isAsc ? 'asc' : 'desc'))
+                break;
+            case 4:
+                qry = query(colEmployee);
+                snapshotText = await getAggregateFromServer(qry, { total: count('company') });
+                text = snapshotText.data().total;
+                Swal.fire({
+                    title: `จำนวนทั้งหมด ${text} คน`,
+                    showConfirmButton: false
+                })
                 break;
         }
     }
