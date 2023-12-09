@@ -7,7 +7,7 @@ const props = defineProps({
     }
 });
 const emit = defineEmits(['changeEmployeesData'])
-const handleCompanyChange = async (companyId) => {
+const handleEmployeesChange = async (companyId) => {
     const filteredEmployees = await qurryEmployeesByCompanyID(companyId);
     emit('changeEmployeesData', filteredEmployees);
 };
@@ -17,7 +17,7 @@ const handleCompanyChange = async (companyId) => {
     <div>
         <div class="text-gray-600">กรองตามบริษัท</div>
         <div class="w-full h-full flex gap-x-1 overflow-scroll pb-4">
-            <button v-for="(company, index) in companies" :key="company.id" @click="handleCompanyChange(company.id)"
+            <button v-for="(company, index) in companies" :key="company.id" @click="handleEmployeesChange(company.id)"
                 class="btn btn-primary text-white">
                 {{ company.name }}
             </button>

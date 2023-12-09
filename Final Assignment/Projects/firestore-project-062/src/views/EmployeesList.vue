@@ -3,6 +3,7 @@ import { ref, onMounted, watchEffect } from 'vue';
 import List from '../components/List.vue';
 import { getDataByCollectionName } from '../composable/getData';
 import CompanyList from '../components/CompanyList.vue';
+import QurryList from '../components/QurryList.vue';
 
 const employees = ref([]);
 const companies = ref([]);
@@ -24,6 +25,7 @@ watchEffect(() => {
     <div class="header">
         <div class="max-w-screen-lg mx-auto space-y-4">
             <h1 class="text-3xl text-left pt-6">Employees List</h1>
+            <QurryList @changeEmployeesData="handleEmployeesDataChange" />
             <CompanyList :companies="companies" @changeEmployeesData="handleEmployeesDataChange" />
             <List :employees="employees" :companies="companies" />
         </div>
