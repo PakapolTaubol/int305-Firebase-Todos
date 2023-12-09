@@ -4,7 +4,7 @@ import { getCompanyNameById } from "../composable/getData.js"
 import Swal from 'sweetalert2'
 
 const props = defineProps({
-    data: {
+    employees: {
         type: Array,
         reqired: true,
     },
@@ -70,8 +70,8 @@ const companyDetails = (cmp_id, companies) => {
 </script>
  
 <template>
-    <div v-if="companyNames && data">
-        <div v-for="(doc, index) in data" :key="index" class="bg-gray-100 rounded-lg p-4 mb-4">
+    <div v-if="companyNames && employees">
+        <div v-for="(doc, index) in employees" :key="index" class="bg-gray-100 rounded-lg p-4 mb-4">
             <div class="flex items-center justify-between">
                 <h3 class="text-lg font-semibold">{{ index + 1 }}. {{ doc.name }}</h3>
                 <span class="text-sm opacity-60">{{ doc.email }}</span>

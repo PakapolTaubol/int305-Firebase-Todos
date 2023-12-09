@@ -25,6 +25,20 @@ export const getCompanyNameById = async (cmp_id) => {
         docData.id = doc.id;
         data = docData;
     }
-    
+
     return data.name;
+}
+
+export const qurryEmployeesByCompanyID = async (cmp_id) => {
+    const col = collection(db, "employees");
+    const qry = query(col, where('company', '==', cmp_id));
+    const snapshot = await getDocs(qry);
+    const data = [];
+
+    for (const doc of snapshot.docs) {
+        const docData = doc.data();
+        docData.id = doc.id;
+        data.push(docData);
+    }
+    return data;
 }
