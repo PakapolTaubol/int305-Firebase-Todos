@@ -1,10 +1,10 @@
 <script setup>
-import { qurryByCondition } from '../composable/getData'
+import { queryByCondition } from '../composable/getData'
 const btnList = ['Order by Name', 'Order by Salary', 'First 2 QA', 'Salary 30,000+', 'Full-stack and 28,500+', 'Frontend or Backend','QA / BA']
 
 const emit = defineEmits(['changeEmployeesData'])
 const handleEmployeesChange = async (index) => {
-    const filteredEmployees = await qurryByCondition(index , 'employees');
+    const filteredEmployees = await queryByCondition(index , 'employees');
     emit('changeEmployeesData', filteredEmployees);
 };
 </script>

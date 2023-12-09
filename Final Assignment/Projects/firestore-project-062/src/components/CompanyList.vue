@@ -1,5 +1,5 @@
 <script setup>
-import { qurryEmployeesByCompanyID } from '../composable/getData'
+import { queryEmployeesByCompanyID } from '../composable/getData'
 const props = defineProps({
     companies: {
         type: Array,
@@ -8,7 +8,7 @@ const props = defineProps({
 });
 const emit = defineEmits(['changeEmployeesData'])
 const handleEmployeesChange = async (companyId) => {
-    const filteredEmployees = await qurryEmployeesByCompanyID(companyId);
+    const filteredEmployees = await queryEmployeesByCompanyID(companyId);
     emit('changeEmployeesData', filteredEmployees);
 };
 </script>

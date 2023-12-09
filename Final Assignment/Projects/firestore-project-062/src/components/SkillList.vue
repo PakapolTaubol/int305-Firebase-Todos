@@ -1,10 +1,10 @@
 <script setup>
-import { qurryByCondition } from '../composable/getData'
+import { queryByCondition } from '../composable/getData'
 const btnList = ['HTML CSS JavaScript', 'Excel', 'SQL', 'Python']
 
 const emit = defineEmits(['changeDepartmentData'])
 const handleDepartmentChange = async (index) => {
-    const filteredDepartment = await qurryByCondition(index, 'departments');
+    const filteredDepartment = await queryByCondition(index, 'departments');
     emit('changeDepartmentData', filteredDepartment);
 };
 </script>

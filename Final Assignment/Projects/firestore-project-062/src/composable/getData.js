@@ -3,7 +3,7 @@ import db from '../firebase/init.js';
 
 let isAsc = true;
 let lastIndex = 0;
-export const qurryByCondition = async (index, mode) => {
+export const queryByCondition = async (index, mode) => {
     let qry = null
     const colEmployee = collection(db, "employees");
     const colCompany = collection(db, "companies");
@@ -97,7 +97,7 @@ export const getCompanyNameById = async (cmp_id) => {
     return data.name;
 }
 
-export const qurryEmployeesByCompanyID = async (cmp_id) => {
+export const queryEmployeesByCompanyID = async (cmp_id) => {
     const col = collection(db, "employees");
     const qry = query(col, where('company', '==', cmp_id));
     const snapshot = await getDocs(qry);
