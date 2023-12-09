@@ -1,7 +1,7 @@
 <script setup>
 import { ref, watchEffect } from 'vue';
 import { getCompanyNameById } from "../composable/getData.js"
-import Swal from 'sweetalert2'
+import { companyDetails, departmentDetails } from "../composable/swalDetail"
 
 const props = defineProps({
     employees: {
@@ -15,57 +15,11 @@ const props = defineProps({
 });
 
 const companyNames = ref({});
-
 watchEffect(async () => {
     props.companies.forEach(async (company) => {
         companyNames.value[company.id] = await getCompanyNameById(company.id);
     });
 });
-
-const companyDetails = (cmp_id, companies) => {
-    const company = companies.find(c => c.id === cmp_id);
-    if (!company) {
-        Swal.fire({
-            text: 'Company not found',
-            icon: 'error',
-            showConfirmButton: false,
-        });
-        return;
-    }
-
-    const {
-        id,
-        name,
-        type,
-        status: { open, createdOn, updatedOn }
-    } = company;
-
-    const [createdOnDate, updatedOnDate] = [createdOn, updatedOn].map(
-        (date) => new Date(date.seconds * 1000).toLocaleString("th-TH", {
-            day: "numeric",
-            month: "long",
-            year: "numeric",
-        })
-    );
-
-    Swal.fire({
-        html: `<div class="flex flex-col text-left text-gray-700">
-                        <div class="flex items-center justify-between">
-                            <span>Company Detail:</span>
-                            <span class="text-blue-500">ID: ${id}</span>
-                        </div>
-                        <ul class="p-4">
-                            <li>ชื่อบริษัท: <span class="text-blue-500">${name}</span></li>
-                            <li>ประเภท: <span class="text-blue-500">${type}</span></li>
-                            <li>สถานะบริษัท: ${open == true ? 'เปิดดำเนินการ' : 'ปิดบริษัทไปแล้ว'}</li>
-                            <li>สร้างขึ้นเมื่อ: ${createdOnDate}</li>
-                            <li>อัปเดตล่าสุด: ${updatedOnDate}</li>
-                        </ul>
-                    </div>`,
-        showConfirmButton: false,
-    });
-};
-
 
 </script>
  
@@ -85,8 +39,9 @@ const companyDetails = (cmp_id, companies) => {
                             {{ companyNames[doc.company] }}
                         </span>
                     </li>
-                    <li>อาชีพ: {{ doc.department }}</li>
                     <li>เงินเดือน: {{ doc.salary }} บาท</li>
+                    <li>อาชีพ: {{ doc.department }} <button @click="departmentDetails(doc.department)"
+                            class="text-blue-500 underline">เพิ่มเติม</button></li>
                 </ul>
             </div>
         </div>
