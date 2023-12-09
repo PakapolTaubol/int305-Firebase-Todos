@@ -3,26 +3,58 @@ import db from '../firebase/init.js';
 
 let isAsc = true;
 let lastIndex = 0;
-export const qurryByCondition = async (index) => {
+export const qurryByCondition = async (index, mode) => {
     let qry = null
     const colEmployee = collection(db, "employees");
     const colCompany = collection(db, "companies");
+    const colDepartment = collection(db, "departments");
     // ทำให้การกดปุ่มอื่นเริ่มด้วย asc เสมอ
     lastIndex == index ? '' : isAsc = true
-
-    if (index == 0) {
-        qry = query(colEmployee, orderBy('name', isAsc ? 'asc' : 'desc'));
-    } else if (index == 1) {
-        qry = query(colEmployee, orderBy('salary', isAsc ? 'asc' : 'desc'));
-    } else if (index == 2) {
-        qry = query(colEmployee, where('department', '==', 'QA'), limit(2));
-    } else if (index == 3) {
-        qry = query(colEmployee, where('salary', '>=', 30000), orderBy('salary', isAsc ? 'asc' : 'desc'));
-    } else if (index == 4) {
-        qry = query(colEmployee, and(where('department', '==', 'Full-stack'), where('salary', '>=', 28500)), orderBy('salary', isAsc ? 'asc' : 'desc'));
-    } else if (index == 5) {
-        qry = query(colEmployee, or(where('department', '==', 'Frontend'), where('department', '==', 'Backend')));
+    if (mode == 'employees') {
+        switch (index) {
+            case 0:
+                qry = query(colEmployee, orderBy('name', isAsc ? 'asc' : 'desc'));
+                break;
+            case 1:
+                qry = query(colEmployee, orderBy('salary', isAsc ? 'asc' : 'desc'));
+                break;
+            case 2:
+                qry = query(colEmployee, where('department', '==', 'QA'), limit(2));
+                break;
+            case 3:
+                qry = query(colEmployee, where('salary', '>=', 30000), orderBy('salary', isAsc ? 'asc' : 'desc'));
+                break;
+            case 4:
+                qry = query(colEmployee, and(where('department', '==', 'Full-stack'), where('salary', '>=', 28500)), orderBy('salary', isAsc ? 'asc' : 'desc'));
+                break;
+            case 5:
+                qry = query(colEmployee, or(where('department', '==', 'Frontend'), where('department', '==', 'Backend')));
+                break;
+            case 6:
+                qry = query(colEmployee, where('department', 'in', ['QA', 'BA']));
+                break;
+        }
     }
+
+    else if (mode == 'departments') {
+        switch (index) {
+            case 0:
+                qry = query(colDepartment, where('skill', 'array-contains-any', ['HTML', 'CSS', 'JavaScript']));
+                break;
+            case 1:
+                qry = query(colDepartment, where('skill', 'array-contains', 'Excel'));
+                break;
+            case 2:
+                qry = query(colDepartment, where('skill', 'array-contains', 'SQL'));
+                break;
+            case 3:
+                qry = query(colDepartment, where('skill', 'array-contains', 'Python'));
+                break;
+            case 4:
+                break;
+        }
+    }
+
 
     lastIndex = index
     isAsc = !isAsc;

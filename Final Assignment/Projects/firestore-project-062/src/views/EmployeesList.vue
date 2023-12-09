@@ -24,7 +24,10 @@ watchEffect(() => {
 <template>
     <div class="header">
         <div class="max-w-screen-lg mx-auto space-y-4">
-            <h1 class="text-3xl text-left pt-6">Employees List</h1>
+            <div class="flex items-end justify-between">
+                <h1 class="text-3xl text-left pt-6">Employees List</h1>
+                <RouterLink to="/departments" class="text-blue-500 underline">Go to Department List -></RouterLink>
+            </div>
             <QurryList @changeEmployeesData="handleEmployeesDataChange" />
             <CompanyList :companies="companies" @changeEmployeesData="handleEmployeesDataChange" />
             <List :employees="employees" :companies="companies" />
