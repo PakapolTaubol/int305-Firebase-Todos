@@ -16,7 +16,7 @@ onMounted(async () => {
 <template>
     <div class="header">
         <div class="max-w-screen-lg mx-auto space-y-4">
-            <h1 class="text-3xl text-center py-6">Employees List</h1>
+            <h1 class="text-3xl text-left pt-6">Employees List</h1>
             <CompanyList :companies="companies"/>
             <List :data="data" :companies="companies" />
         </div>

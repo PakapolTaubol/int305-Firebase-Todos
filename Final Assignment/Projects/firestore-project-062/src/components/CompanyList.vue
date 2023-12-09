@@ -9,6 +9,7 @@ const props = defineProps({
  
 <template>
     <div>
+        <div class="text-gray-600">กรองตามบริษัท</div>
         <div class="w-full h-full flex gap-x-1 overflow-scroll pb-4">
             <button v-for="(company, index) in companies" :key="companies.id" class="btn btn-primary text-white">
                 {{ company.name }}

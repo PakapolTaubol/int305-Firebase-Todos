@@ -21,10 +21,6 @@ watchEffect(async () => {
     });
 });
 
-const getCompanyName = (companyId) => {
-    return companyNames.value[companyId];
-};
-
 </script>
  
 <template>
@@ -39,7 +35,7 @@ const getCompanyName = (companyId) => {
                     <li>อายุ: {{ doc.age }}</li>
                     <li>
                         บริษัท: <span class="text-blue-500 underline cursor-pointer">
-                            {{ getCompanyName(doc.company) }}
+                            {{ companyNames[doc.company] }}
                         </span>
                     </li>
                     <li>อาชีพ: {{ doc.department }}</li>
