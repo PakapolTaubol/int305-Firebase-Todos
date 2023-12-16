@@ -7,7 +7,6 @@ let lastIndex = 0;
 export const queryByCondition = async (index, mode) => {
     let qry = null
     const colEmployee = collection(db, "employees");
-    const colCompany = collection(db, "companies");
     const colDepartment = collection(db, "departments");
 
     let snapshotText = '';
@@ -132,7 +131,7 @@ export const getCompanyNameById = async (cmp_id) => {
 
     for (const doc of snapshot.docs) {
         const docData = doc.data();
-        docData.id = doc.id;
+        // docData.id = doc.id;
         data = docData;
     }
 
@@ -147,7 +146,7 @@ export const queryEmployeesByCompanyID = async (cmp_id) => {
 
     for (const doc of snapshot.docs) {
         const docData = doc.data();
-        docData.id = doc.id;
+        // docData.id = doc.id;
         data.push(docData);
     }
     return data;
